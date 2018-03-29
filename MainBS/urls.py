@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^register/$', views.UserFormView.as_view(), name='register'),
+    #url(r'^register/$', views.UserFormView.as_view(), name='register'),
     url(r'^BSform/$', views.BSform, name='BSform'),
+    url(r'^Auth/$', views.Auth, name='auth'),
 ]
