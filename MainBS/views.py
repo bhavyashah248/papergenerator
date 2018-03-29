@@ -18,7 +18,7 @@ def BSform(request):
 
 class UserFormView(View):
     form_class = UserForm
-    template_name = 'MainBS/Registration_form.html'
+    template_name = 'MainBS/Login.html'
 
     def get(self, request):
         form = self.form_class(None)
@@ -43,6 +43,6 @@ class UserFormView(View):
 
                 if user.is_active:
                     login(request, user)
-                    return redirect('MainBS:index')
+                    return render(request, "Hello")
 
         return render(request, self.template_name, {'form':form})
