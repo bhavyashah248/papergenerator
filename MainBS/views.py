@@ -24,7 +24,7 @@ def Auth(request):
 
         if user.is_active:
             login(request, user)
-            return render(request, 'MainBS/main.html', None)
+            return render(request, 'MainBS/Home.html', None)
 
 
     return render(request,'MainBS/BSform.html',None)
