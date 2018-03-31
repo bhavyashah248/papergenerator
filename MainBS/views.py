@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.views.generic import View
-
-
+from django.shortcuts import render
 
 
 # Create your views here.
 def index(request):
     return render(request, 'MainBS/login.html', None)
 
+
 def BSform(request):
-    return render(request,'MainBS/BSform.html',None)
+    return render(request, 'MainBS/BSform.html', None)
+
 
 def Auth(request):
     uname = request.POST.get('username', '')
@@ -26,10 +24,7 @@ def Auth(request):
             login(request, user)
             return render(request, 'MainBS/Home.html', None)
 
-
-    return render(request,'MainBS/BSform.html',None)
-
-
+    return render(request, 'MainBS/BSform.html', None)
 
 # class UserFormView(View):
 #     form_class = UserForm
