@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login ,logout
+from django.shortcuts import render,redirect
 
 
 # Create your views here.
@@ -22,9 +22,21 @@ def Auth(request):
 
         if user.is_active:
             login(request, user)
-            return render(request, 'MainBS/Home.html', None)
+            return redirect('Home/',request, None)
+    else:
+        return render(request, 'MainBS/login.html', None)
 
-    return render(request, 'MainBS/BSform.html', None)
+def Home(request):
+    user = request.user
+    if user is not None:
+        if user.is_active:
+            return render(request, 'MainBS/Home.html', None)
+        else:
+            return render(request, 'MainBS/login.html', None)
+
+def lout(request):
+    logout(request)
+    return render(request, 'MainBS/login.html', None)
 
 # class UserFormView(View):
 #     form_class = UserForm
