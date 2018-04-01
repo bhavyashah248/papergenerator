@@ -28,8 +28,7 @@ def Auth(request):
         return render(request, 'MainBS/login.html', None)
 @login_required(login_url="/MainBS")
 def Home(request):
-
-            return render(request, 'MainBS/Home.html', None)
+    return render(request, 'MainBS/Home.html', None)
 
 def lout(request):
     logout(request)
