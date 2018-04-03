@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.contrib.auth import authenticate, login ,logout
-from django.shortcuts import render,redirect
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from .models import Teacher,Chapter,Type
 
 
 # Create your views here.
@@ -23,17 +24,31 @@ def Auth(request):
 
         if user.is_active:
             login(request, user)
-            return redirect('Home/',request, None)
+            return redirect('Home/', request, None)
     else:
         return render(request, 'MainBS/login.html', None)
+
+
 @login_required(login_url="/MainBS")
 def Home(request):
     return render(request, 'MainBS/Home.html', None)
+
 
 def lout(request):
     logout(request)
     return render(request, 'MainBS/login.html', None)
 
+
+def addq(request):
+    teacher = Teacher.objects.get(user = request.user)
+    sub = teacher.subject
+    typ = Type.objects.filter(subject = sub)
+    chap = Chapter.objects.filter(subject=sub)
+
+    return render(request, 'MainBS/addq.html', {'type':typ,'chapter':chap})
+
+# def test(request):
+#     return render(request,"MainBS/",None)
 # class UserFormView(View):
 #     form_class = UserForm
 #     template_name = 'MainBS/Login.html'
@@ -57,6 +72,7 @@ def lout(request):
 #             #login user
 #             user = authenticate(username=username, password=password)
 #
+
 #             if user is not None:
 #
 #                 if user.is_active:

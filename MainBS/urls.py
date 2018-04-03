@@ -8,4 +8,6 @@ urlpatterns = [
     url(r'^Auth/$', views.Auth, name='auth'),
     url(r'^Auth/Home/$', views.Home, name='home'),
     url(r'^logout/$', views.lout, name='logout'),
+    url(r'^test/$', views.addq, name='test'),
+    url(r'^addquestion/$', views.addq, name='test'),
 ]

@@ -1,0 +1,23 @@
+{% extends 'MainBS/Base2.html'%}
+
+
+{% block body %}
+<div class="container">
+
+
+    <h1>Welcome {{ request.user.username }}</h1>
+    <h1>Welcome {{ type  }}</h1>
+    <h1>Welcome {{ chapter  }}</h1>
+
+
+
+<div class="form-group">
+  <label for="usr">Name:</label>
+  <input type="text" class="form-control" id="usr">
+</div>
+<div class="form-group">
+  <label for="pwd">Password:</label>
+  <input type="password" class="form-control" id="pwd">
+</div>
+</div>
+{% endblock %}
