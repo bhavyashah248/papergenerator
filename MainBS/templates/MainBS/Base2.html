@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Login</title>
+  <title>{{ request.user.username }}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -44,7 +44,7 @@ li {
 </head>
 <header>
   <div class="jumbotron text-center">
-    <a href="/MainBS/" style="color: #ffffff">
+    <a href="/MainBS/Auth/Home/" style="color: #ffffff">
     <h1>AI</h1>
     <h2>Paper Generator</h2>
     </a>
@@ -56,7 +56,7 @@ li {
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-left">
           <li><a href="#"><span class="glyphicon glyphicon-file"></span>  Create your own paper</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-plus-sign"></span>  Add new questions</a></li>
+          <li><a href="/MainBS/addquestion/"><span class="glyphicon glyphicon-plus-sign"></span>  Add new questions</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/MainBS/logout/"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
