@@ -4,7 +4,7 @@
 {% block body %}
 <div class="container">
     <h1> {{ subject }} </h1>
-<form action="/MainBS/submit/" method="post">
+<form action="/MainBS/result/" method="post">
     {% csrf_token %}
 <div class="form-group">
   <label for="total">Total Marks:</label>
@@ -26,7 +26,7 @@
     {% endfor %}
 
 <div class="form-group">
-      <div class="col-sm-offset-5 col-sm-10">
+      <div class="col-sm-offset-5 col-sm-12">
         <button type="submit" class="btn btn-lg">Generate</button>
       </div>
     </div>

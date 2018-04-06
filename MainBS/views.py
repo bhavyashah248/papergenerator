@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Teacher,Chapter,Type,Question,Subject
+from MainBS import BSalgo as bs
 
 
 # Create your views here.
@@ -78,8 +79,29 @@ def gen(request):
     chap = Chapter.objects.filter(subject=sub)
     return render(request, 'MainBS/gen.html', {"type": typ,'chapter': chap})
 
+@login_required(login_url="/MainBS")
+def result(request):
+    typeweight = []
+    chapweight = []
+    tdata = []
+    teacher = Teacher.objects.get(user=request.user)
+    sub = teacher.subject
+    typ = Type.objects.filter(subject=sub)
+    chap = Chapter.objects.filter(subject=sub)
+    marks = str(request.POST.get('total', ''))
+    for each_type in typ:
+        temp = str(request.POST.get(each_type, ''))
+        typeweight.append(temp)
+    for each_type in chap:
+        temp = str(request.POST.get(each_type, ''))
+        chapweight.append(temp)
 
+    result = bs.algo(marks=marks,type=typeweight,chap=chapweight)
+    tdata.append(marks)
+    tdata.append(typeweight)
+    tdata.append(chapweight)
 
+    return render(request, 'MainBS/result.html', {"result": result,"data":tdata})
 
 
 
