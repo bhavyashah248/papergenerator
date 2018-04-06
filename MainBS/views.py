@@ -11,10 +11,12 @@ def index(request):
     return render(request, 'MainBS/login.html', None)
 
 
+@login_required(login_url="/MainBS")
 def BSform(request):
     return render(request, 'MainBS/BSform.html', None)
 
 
+@login_required(login_url="/MainBS")
 def Auth(request):
     uname = request.POST.get('username', '')
     pwd = request.POST.get('pwd', '')
@@ -33,12 +35,12 @@ def Auth(request):
 def Home(request):
     return render(request, 'MainBS/Home.html', None)
 
-
+@login_required(login_url="/MainBS")
 def lout(request):
     logout(request)
     return render(request, 'MainBS/login.html', None)
 
-
+@login_required(login_url="/MainBS")
 def addq(request):
     teacher = Teacher.objects.get(user = request.user)
     sub = teacher.subject
@@ -47,6 +49,8 @@ def addq(request):
 
     return render(request, 'MainBS/addq.html', {'type':typ,'chapter':chap, 'subject':sub})
 
+
+@login_required(login_url="/MainBS")
 def sub(request):
     try:
         teacher = Teacher.objects.get(user=request.user)
@@ -65,11 +69,17 @@ def sub(request):
     except:
         return render(request, 'MainBS/fail.html', None)
 
-    # result.append(chap)
-    # result.append(type)
-    # result.append(marks)
-    # result.append(quest)
-    # result.append(ans)
+
+@login_required(login_url="/MainBS")
+def gen(request):
+    teacher = Teacher.objects.get(user=request.user)
+    sub = teacher.subject
+    typ = Type.objects.filter(subject=sub)
+    chap = Chapter.objects.filter(subject=sub)
+    return render(request, 'MainBS/gen.html', {"type": typ,'chapter': chap})
+
+
+
 
 
 

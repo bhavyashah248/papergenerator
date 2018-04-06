@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'MainBS/Base2.html'%}
 
-</body>
-</html>
+
+{% block body %}
+
+<br/>
+<br/>
+
+<div class="container-fluid">
+  <div class="row">
+    <a href="/MainBS">
+    <div class="col-sm-6" style="font-size:40px;border-style: groove;border-color: blue;">
+      <span class="glyphicon glyphicon-file"></span>  Home
+    </div>
+   </a>
+   <a href="/MainBS/addquestion/">
+    <div class="col-sm-6" style="font-size:40px;border-style: groove;border-left-style: none;border-color: blue;">
+      <span class="glyphicon glyphicon-plus-sign"></span>  Please Try Again
+    </div>
+   </a>
+  </div>
+</div>
+
+<center><h1>Something Went Wrong!!</h1></center>
+
+
+{% endblock %}

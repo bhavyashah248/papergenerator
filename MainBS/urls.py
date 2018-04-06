@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^test/$', views.addq, name='test'),
     url(r'^addquestion/$', views.addq, name='test'),
     url(r'^submit/$', views.sub, name='sub'),
+    url(r'^genpaper/$', views.gen, name='gen'),
 ]

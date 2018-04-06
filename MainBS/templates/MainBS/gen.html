@@ -1,0 +1,35 @@
+{% extends 'MainBS/Base2.html'%}
+
+
+{% block body %}
+<div class="container">
+    <h1> {{ subject }} </h1>
+<form action="/MainBS/submit/" method="post">
+    {% csrf_token %}
+<div class="form-group">
+  <label for="total">Total Marks:</label>
+  <input type="number" class="form-control" name = "total" id="total">
+</div>
+    <h3> Enter the weightage for each type of question: </h3>
+    {% for each in type %}
+<div class="form-group">
+  <label for="{{ each.name }}">{{ each.name }}:</label>
+  <input type="number" class="form-control" name = "{{ each.name }}" id="{{ each.name }}">
+</div>
+    {% endfor %}
+    <h3> Enter the weightage for each chapter (in percentage): </h3>
+    {% for each1 in chapter %}
+<div class="form-group">
+  <label for="{{ each1.name }}">{{ each1.name }}:</label>
+  <input type="number" class="form-control" name = "{{ each1.name }}" id="{{ each1.name }}">
+</div>
+    {% endfor %}
+
+<div class="form-group">
+      <div class="col-sm-offset-5 col-sm-10">
+        <button type="submit" class="btn btn-lg">Generate</button>
+      </div>
+    </div>
+</form>
+</div>
+{% endblock %}
