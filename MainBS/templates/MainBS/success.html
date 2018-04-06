@@ -1,22 +1,27 @@
-
 {% extends 'MainBS/Base2.html'%}
 
 
 {% block body %}
 
+<br/>
+<br/>
+
 <div class="container-fluid">
   <div class="row">
-    <a href="#">
+    <a href="/MainBS">
     <div class="col-sm-6" style="font-size:40px;border-style: groove;border-color: blue;">
-      <span class="glyphicon glyphicon-file"></span>  Generate a Question Paper
+      <span class="glyphicon glyphicon-file"></span>  Home
     </div>
    </a>
    <a href="/MainBS/addquestion/">
     <div class="col-sm-6" style="font-size:40px;border-style: groove;border-left-style: none;border-color: blue;">
-      <span class="glyphicon glyphicon-plus-sign"></span>  Add Questions
+      <span class="glyphicon glyphicon-plus-sign"></span>  Add Another Question
     </div>
    </a>
   </div>
 </div>
+
+<center><h1>Question Added Successfully!!</h1></center>
+
 
 {% endblock %}

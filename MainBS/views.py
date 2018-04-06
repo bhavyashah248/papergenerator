@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Teacher,Chapter,Type
+from .models import Teacher,Chapter,Type,Question,Subject
 
 
 # Create your views here.
@@ -45,38 +45,31 @@ def addq(request):
     typ = Type.objects.filter(subject = sub)
     chap = Chapter.objects.filter(subject=sub)
 
-    return render(request, 'MainBS/addq.html', {'type':typ,'chapter':chap})
+    return render(request, 'MainBS/addq.html', {'type':typ,'chapter':chap, 'subject':sub})
 
-# def test(request):
-#     return render(request,"MainBS/",None)
-# class UserFormView(View):
-#     form_class = UserForm
-#     template_name = 'MainBS/Login.html'
-#
-#     def get(self, request):
-#         form = self.form_class(None)
-#         return render(request, self.template_name, {'form':form})
-#
-#     def post(self, request):
-#         form = self.form_class(request.POST)
-#
-#         if form.is_valid():
-#
-#             user = form.save(commit=False)
-#             username =form.cleaned_data['username']
-#             password = form.cleaned_data['password']
-#             user.username = username
-#             user.set_password(password)
-#             user.save()
-#
-#             #login user
-#             user = authenticate(username=username, password=password)
-#
+def sub(request):
+    try:
+        teacher = Teacher.objects.get(user=request.user)
+        sub = teacher.subject
+        chap = str(request.POST.get('chapter', ''))
+        type = str(request.POST.get('type', ''))
+        marks = str(request.POST.get('marks', ''))
+        quest = str(request.POST.get('question', ''))
+        ans = str(request.POST.get('answer', ''))
+        # fsub = Subject.objects.get(subject = sub)
+        fchap = Chapter.objects.get(name = chap)
+        ftype = Type.objects.get(name = type)
+        que = Question(subject=sub,chapter = fchap, type = ftype, marks = marks, question = quest,q_id = 'nakami', answer = ans)
+        que.save()
+        return render(request, 'MainBS/success.html', {"result": que})
+    except:
+        return render(request, 'MainBS/fail.html', None)
 
-#             if user is not None:
-#
-#                 if user.is_active:
-#                     login(request, user)
-#                     return render(request, "Hello")
-#
-#         return render(request, self.template_name, {'form':form})
+    # result.append(chap)
+    # result.append(type)
+    # result.append(marks)
+    # result.append(quest)
+    # result.append(ans)
+
+
+
