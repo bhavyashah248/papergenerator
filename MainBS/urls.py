@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^addquestion/$', views.addq, name='test'),
     url(r'^submit/$', views.sub, name='sub'),
     url(r'^genpaper/$', views.gen, name='gen'),
-    url(r'^result/$', views.result, name='gen'),
+    url(r'^result/$', views.result, name='result'),
+    url(r'^populate/$', views.populate, name='populate'),
 ]

@@ -32,23 +32,23 @@ class Chapter(models.Model):
 
 class Type(models.Model):
     name = models.CharField(max_length=30)
+    marks = models.CharField(max_length=30)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return str(self.name) + ' (' + str(self.marks) + ')'
 
 
 class Question(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
     type = models.ForeignKey(Type, on_delete=models.CASCADE)
-    marks = models.CharField(max_length=10)
     question = models.CharField(max_length=200)
-    q_id = models.CharField(max_length=20)
+    prob = models.CharField(max_length=20)
     answer = models.CharField(max_length=500)
 
     def __str__(self):
-        return self.q_id
+        return str(self.subject)+ ' - ' + str(self.chapter)+ ' - ' + str(self.type)
 
 
 

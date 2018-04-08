@@ -3,7 +3,24 @@
 
 {% block body %}
 
-<h1>{{ data }}</h1>
-<h1>{{ result }}</h1>
+{% for question in result %}
+<div class="container">
+    <div class="row">
+      <div class="col-md-10">
+          <h3>{{ question.question }}</h3>
+      </div>
+      <div class="col-md-2"></div>
+        <a href="#{{ question.id }}" class="btn btn-default" data-toggle="collapse">Show Answer</a>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="{{ question.id }}" class="collapse">
+                <h4>{{ question.answer }}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
 
 {% endblock %}

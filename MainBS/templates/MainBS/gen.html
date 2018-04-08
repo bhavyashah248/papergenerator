@@ -13,7 +13,7 @@
     <h3> Enter the weightage for each type of question: </h3>
     {% for each in type %}
 <div class="form-group">
-  <label for="{{ each.name }}">{{ each.name }}:</label>
+  <label for="{{ each.name }}">{{ each.name }} ({{ each.marks }}):</label>
   <input type="number" class="form-control" name = "{{ each.name }}" id="{{ each.name }}">
 </div>
     {% endfor %}
