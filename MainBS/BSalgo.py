@@ -39,6 +39,8 @@ def algo (marks = None,typePattern = None, chapPattern = None, sub = None, tchap
                     # print("Winner ==>",winnerWinnerChickenDinner)
                     # if int(winnerWinnerChickenDinner.prob) != 0:
                     Result.append(winnerWinnerChickenDinner)
+                    print("original ==>" + str(winnerWinnerChickenDinner.id))
+                    # reduce(id=winnerWinnerChickenDinner.id)
                     chapPattern[index] -= weightage
                     noOfQue -= 1
                     if noOfQue == 0:
@@ -53,11 +55,13 @@ def algo (marks = None,typePattern = None, chapPattern = None, sub = None, tchap
 
 def increase(id,prob=30):
     que = Question.objects.get(id=id)
-    que.prob -= prob
+    que.prob = str(int(que.prob) + prob)
     que.save()
 
 
 def reduce(id,prob=10):
     que = Question.objects.get(id=id)
-    que.prob -= prob
+    que.prob = str(int(que.prob) - prob)
+    print("new ==>" + str(que.prob))
+
     que.save()
