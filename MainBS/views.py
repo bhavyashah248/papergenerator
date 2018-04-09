@@ -60,13 +60,21 @@ def sub(request):
         sub = teacher.subject
         chap = str(request.POST.get('chapter', ''))
         type = str(request.POST.get('type', ''))
-        marks = str(request.POST.get('marks', ''))
+        # marks = str(request.POST.get('marks', ''))
         quest = str(request.POST.get('question', ''))
         ans = str(request.POST.get('answer', ''))
         # fsub = Subject.objects.get(subject = sub)
         fchap = Chapter.objects.get(name=chap)
-        ftype = Type.objects.get(name=type)
-        que = Question(subject=sub, chapter=fchap, type=ftype, marks=marks, question=quest, q_id='nakami', answer=ans)
+        tall = type.split('(')
+        tname = tall[0]
+        rest = tall[1]
+        rest2 = rest.split(')')
+        tmarks =rest2[0]
+        # print(tname)
+        # print(tmarks)
+        ftype = Type.objects.get(name=tname, marks=tmarks)
+        # print(ftype)
+        que = Question(subject=sub, chapter=fchap, type=ftype, question=quest, prob='50', answer=ans)
         que.save()
         return render(request, 'MainBS/success.html', {"result": que})
     except:
