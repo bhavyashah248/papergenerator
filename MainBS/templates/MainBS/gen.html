@@ -10,14 +10,14 @@
   <label for="total">Total Marks:</label>
   <input type="number" class="form-control" name = "total" id="total">
 </div>
-    <h3> Enter the weightage for each type of question: </h3>
+    <h3> Enter the no of questions for each type: </h3>
     {% for each in type %}
 <div class="form-group">
   <label for="{{ each.name }}">{{ each.name }} ({{ each.marks }}):</label>
   <input type="number" class="form-control" name = "{{ each.name }}" id="{{ each.name }}">
 </div>
     {% endfor %}
-    <h3> Enter the weightage for each chapter (in percentage): </h3>
+    <h3> Enter the no of questions from each chapter: </h3>
     {% for each1 in chapter %}
 <div class="form-group">
   <label for="{{ each1.name }}">{{ each1.name }}:</label>

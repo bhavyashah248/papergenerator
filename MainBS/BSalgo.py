@@ -51,7 +51,7 @@ def algo (marks = None,typePattern = None, chapPattern = None, sub = None, tchap
         # end of construction
         return Result
     else:
-        return "You left a feild empty"
+        return "You left a field empty"
 
 def increase(id,prob=30):
     que = Question.objects.get(id=id)
