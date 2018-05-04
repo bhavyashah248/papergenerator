@@ -90,6 +90,7 @@ def gen(request):
     return render(request, 'MainBS/gen.html', {"type": typ, 'chapter': chap})
 
 
+
 @login_required(login_url="/MainBS")
 def result(request):
     typeweight = []
@@ -100,25 +101,37 @@ def result(request):
     typ = Type.objects.filter(subject=sub).order_by('-marks')
     chap = Chapter.objects.filter(subject=sub)
     marks = str(request.POST.get('total', ''))
+    user_marks = 0
+    # count1 = 0
     for each_type in typ:
         typpattern = []
         typpattern.append(each_type)
         temp = str(request.POST.get(each_type.name, ''))
         typpattern.append(temp)
         typpattern.append(each_type.marks)
+        user_marks += (int(temp)*int(each_type.marks))
+        # count1 += int(temp)
         typeweight.append(typpattern)
+    count2 = 0
     for each_type in chap:
         temp = str(request.POST.get(each_type.name, ''))
+        count2 += int(temp)
         chapweight.append(int(temp))
 
-    result = bs.algo(marks=marks, typePattern=typeweight, chapPattern=chapweight, sub=sub, tchapters=chap)
-    tdata.append(marks)
-    tdata.append(typeweight)
-    tdata.append(chapweight)
+    # print("Count1 = ",int(count1),"  count2 = ",int(count2),"  marks = ",marks,"  usermarks = ",user_marks)
+    if int(marks) == int(count2) and int(marks) == int(user_marks):
+        result = bs.algo(marks=marks, typePattern=typeweight, chapPattern=chapweight, sub=sub, tchapters=chap)
+        tdata.append(marks)
+        tdata.append(typeweight)
+        tdata.append(chapweight)
 
-    return render(request, 'MainBS/result.html', {"result": result})
-
-
+        return render(request, 'MainBS/result.html', {"result": result})
+    else:
+        teacher = Teacher.objects.get(user=request.user)
+        sub = teacher.subject
+        typ = Type.objects.filter(subject=sub)
+        chap = Chapter.objects.filter(subject=sub)
+        return render(request, 'MainBS/genFail.html', {"type": typ, 'chapter': chap})
 
 
 def populate(request):

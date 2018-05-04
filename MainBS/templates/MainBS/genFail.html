@@ -2,6 +2,9 @@
 
 
 {% block body %}
+<center>
+<p style="color:red;">*Total marks doesn't add up. Please verify your input.</p>
+</center>
 <div class="container">
     <h1> {{ subject }} </h1>
 <form action="/MainBS/result/" name="form1" onsubmit="required()" method="post">
@@ -17,7 +20,7 @@
   <input type="number" class="form-control" required="required" name = "{{ each.name }}" id="{{ each.name }}">
 </div>
     {% endfor %}
-    <h3> Enter the weightage (in marks) of each chapter: </h3>
+    <h3> Enter the no of questions from each chapter: </h3>
     {% for each1 in chapter %}
 <div class="form-group">
   <label for="{{ each1.name }}">{{ each1.name }}:</label>
